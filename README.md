@@ -1,5 +1,5 @@
 ## Step 1
-Configure an Nginx server on port 8080 and serve all files located at /var/lib/dotin/www/ directory.
+Configure an Nginx server on port 8888 and serve all files located at /var/lib/dotin/www/ directory.
 
 ## Step 2
 Enable HTTPS on port 8443 for your Nginx and redirect all requests (even 8080 HTTP requests) to the HTTPS port.
