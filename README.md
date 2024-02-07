@@ -15,6 +15,7 @@ Dockerize your deployment. Do your firewall rules work after dockerizing? Explai
 -------
 
 # Solution
+
 ## Step 1
 1- install nginx via apt repository
 
@@ -71,3 +72,20 @@ server {
 ```
 
 4- try to access localhost:8888 and see that is redirected to 8443
+
+## Step 3
+To use a firewall system to block requests to all ports except 8443, follow these steps:
+
+
+1- Install ufw:
+```sudo apt-get install ufw```
+
+2- Allow Incoming Traffic on Port 8443:
+```sudo ufw allow 8443```
+
+3- Block All Other Ports:
+```sudo ufw default deny incoming```
+
+4- Enable the Firewall:
+```sudo ufw enable```
+
