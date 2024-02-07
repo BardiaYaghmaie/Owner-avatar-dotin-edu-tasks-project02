@@ -12,7 +12,6 @@ Using a Firewall system (like ufw or iptables) block requests to all ports excep
 Dockerize your deployment. Do your firewall rules work after dockerizing? Explain your answer.
 
 -------
--------
 
 # Solution
 
@@ -77,15 +76,50 @@ server {
 To use a firewall system to block requests to all ports except 8443, follow these steps:
 
 
-1- Install ufw:
-```sudo apt-get install ufw```
+1- install ufw:
+```
+sudo apt-get install ufw
+```
 
-2- Allow Incoming Traffic on Port 8443:
-```sudo ufw allow 8443```
+2- allow incoming traffic on port 8443:
+```
+sudo ufw allow 8443
+```
 
-3- Block All Other Ports:
-```sudo ufw default deny incoming```
+3- block all other ports:
+```
+sudo ufw default deny incoming
+```
 
-4- Enable the Firewall:
-```sudo ufw enable```
+4- enable the firewall:
+```
+sudo ufw enable
+```
 
+## Step 4
+1- create a dockerfile for nginx project
+
+Dockerfile
+```
+FROM nginx:latest
+
+COPY project02.conf /etc/nginx/conf.d/project02.conf
+COPY ./certs/cert.pem /etc/nginx/certs/cert.pem
+COPY ./certs/key.pem /etc/nginx/certs/key.pem
+
+EXPOSE 8443
+
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+2- build the image
+```
+docker build -t nginx-project02 .
+```
+
+3- run a container from the image
+```
+docker run --name nginx-project02 -d -p 8446:8443 nginx-project02
+```
+
+4- access the web server via ```localhost:8446```
