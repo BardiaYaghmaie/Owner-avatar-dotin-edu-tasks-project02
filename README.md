@@ -10,8 +10,10 @@ Using a Firewall system (like ufw or iptables) block requests to all ports excep
 
 ## Step 4
 Dockerize your deployment. Do your firewall rules work after dockerizing? Explain your answer.
+
 -------
 -------
+
 # Solution
 ## Step 1
 1- install nginx via apt repository
